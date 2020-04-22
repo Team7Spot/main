@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS users
 	email VARCHAR(255) NOT NULL UNIQUE,
 	firstName VARCHAR(64),
 	lastName VARCHAR(64),
+	imageURL VARCHAR(2083),
     	userRole ENUM('Admin', 'Professor', 'Student') NOT NULL DEFAULT 'Student',
 	PRIMARY KEY(id)
 );
