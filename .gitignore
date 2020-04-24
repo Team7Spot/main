@@ -1,0 +1,6 @@
+*.sql
+*.zip
+*.dmg
+*.iso
+*.log
+.sqlite
