@@ -1,27 +1,31 @@
 const express = require('express');
 const socket = require('socket.io');
 const mysql = require('mysql');
-const passportSetup = require('./config/passport-setup')
+const path = require('path')
+const passport = require('passport')
 
+const con = require('./config/db-setup')
+const authRouter = require('./routes/auth-routes')
+const keys = require('./config/keys')
+
+const PORT = process.env.PORT || 5000
 const app = express()
-const server = app.listen(3000, () => { //starts server on port 3000
-  console.log('listening on port 3000')
-})
-app.use(express.static('./../frontend'))
-const io = socket(server);
-io.on('connection', (socket) => {
-  console.log('Connection made to server', socket.id)
+
+app.use(authRouter)
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.get('/', (req, res) => {
+  //this was to make sure I could send files
+  res.sendFile(path.join(__dirname, '../frontend/teamspot/public/index.html'))
 })
 
-//connect to a database
-var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'dbname'
-})
-
-/*connection.connect((err) => {
+con.connect((err) => {
   if (err) throw err
-  console.log('Connected to db')
-})*/
+  console.log('connected to db')
+})
+
+//creates a server
+const server = app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`)
+})

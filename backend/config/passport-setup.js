@@ -1,12 +1,23 @@
 const passport = require('passport')
 const googleStrategy = require('passport-google-oauth20')
 
-passport.use(
-  new googleStrategy({
-    callbackURL: '/auth/google/redirect',
-    clientID: '376925100681-1pv6v6ntumn25vabdsebmb56obr273s7.apps.googleusercontent.com',
-    clientSecret: 'mIbL5aD-EqQTZN0l7AT-chKj'
-  }, (accessToken, refreshToken, profile, done) => {
-    console.log('this is a callback function')
+const keys = require('./keys')
+const con = require('../config/db-setup')
+
+passport.use( new googleStrategy({
+  callbackURL: keys.google.callbackURL,
+  clientID: keys.google.clientID,
+  clientSecret: keys.google.clientSecret,
+  passReqToCallback: true
+},
+  (accessToken, refreshToken, profile, done) => {
+    //handle new and returning users here
+    console.log('this is the callback function for google authentication')
+    let sqlQuery = ''
+    con.query(sqlQuery, (err, user) => {
+      if(err) {
+        return done(err)
+      }
+    })
   })
-);
+)
