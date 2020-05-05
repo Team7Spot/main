@@ -1,10 +1,23 @@
 const keys = require('./keys')
 const mysql = require('mysql');
 
-var con = mysql.createConnection({
-  host: keys.dbInfo.host,
-  user: keys.dbInfo.user,
-  password: keys.dbInfo.password,
-})
-
-module.exports = con
+module.exports = {
+  userCon: mysql.createConnection({
+    host: keys.dbInfo.host,
+    user: keys.dbInfo.user,
+    password: keys.dbInfo.password,
+    database: 'usersAndRoles'
+  }),
+  projectsCon: mysql.createConnection({
+    host: keys.dbInfo.host,
+    user: keys.dbInfo.user,
+    password: keys.dbInfo.password,
+    database: 'projects'
+  }),
+  tasksCon: mysql.createConnection({
+    host: keys.dbInfo.host,
+    user: keys.dbInfo.user,
+    password: keys.dbInfo.password,
+    database: 'tasksAndActivities'
+  })
+}

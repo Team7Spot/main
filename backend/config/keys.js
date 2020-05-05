@@ -9,7 +9,7 @@ module.exports = {
   //info needed to connect to the database
   dbInfo: {
     host: 'localhost',
-    user: 'Nate',
-    password: 'Bonsai1998!',
+    user: 'root',
+    password: 'root',
   }
 }
