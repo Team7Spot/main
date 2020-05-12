@@ -43,6 +43,7 @@ class TournamentList extends React.Component {
     let tournaments = undefined;
     try {
       tournaments = await TournamentAPI.getTournaments();
+      console.log(tournaments);
     } catch (error) {
       let message = <h2>Error loading tournaments</h2>;
       this.setState({ tournamentListView: message });

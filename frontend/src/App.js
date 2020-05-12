@@ -10,7 +10,7 @@ import theme from "assets/jss/theme";
 import "./App.css";
 
 // Pages
-import HomePage from "views/HomePage";
+import HomePage from "./views/HomePage/HomePage";
 import TournamentDetails from "views/TournamentDetails";
 import MatchDetails from "views/MatchDetails";
 import TournamentCreate from "views/TournamentCreate";
@@ -34,7 +34,7 @@ class App extends Component {
           <Router>
             <Switch>
               <Route path="/" exact component={HomePage} />
-              <Route
+              {/* <Route
                 path="/login"
                 render={props => <HomePage {...props} login={true} />}
               />
@@ -96,7 +96,7 @@ class App extends Component {
               />
               <Route path="/team/:teamID" exact component={TeamDetails} />
               <Route path="/team/:teamID/invite" exact component={TeamInvite} />
-              <Route component={NotFound} />
+              <Route component={NotFound} /> */}
             </Switch>
           </Router>
         </MuiThemeProvider>
