@@ -12,7 +12,7 @@ module.exports = {
   },
   databaseConfig: {
     host: process.env.DB_HOST || "localhost",
-    username: process.env.DB_USERNAME || "root",
+    username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT || "3306",
     schema: process.env.DB_NAME || "tournamentbuzz"
